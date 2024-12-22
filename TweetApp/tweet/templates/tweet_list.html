@@ -10,22 +10,105 @@
 
 <a> <a href="{% url 'tweet_create' %}" class="btn btn-primary mb-4">Create a Tweet</a> </a>
 
-<div class = "container row gap-3"> 
 
-    {% for tweet in tweets  %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{tweet.user.username}}</h5>
-          <p class="card-text">{{tweet.text}}</p>
-          <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-          <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+<style>
+  .card {
+    border: 1px solid #444; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
 
-        </div>
+.card-img-top {
+    height: 180px;
+    object-fit: cover; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 1.5rem; 
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f8f9fa;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #dcdcdc;
+}
+
+.btn {
+    border-radius: 20px; 
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    text-transform: uppercase; 
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+</style>
+
+
+
+
+<div class="container row gap-3">
+
+  {% for tweet in tweets %}
+  <div class="card bg-dark text-light" style="width: 18rem;">
+      <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image">
+      <div class="card-body">
+          <h5 class="card-title">{{ tweet.user.username }}</h5>
+          <p class="card-text">{{ tweet.text }}</p>
+          <div class="d-flex justify-content-between">
+              <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-info">Edit</a>
+              <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+          </div>
       </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% endblock %}
