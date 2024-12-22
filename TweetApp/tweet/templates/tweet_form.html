@@ -1,0 +1,26 @@
+{% extends "layout.html" %} 
+
+{% block title %} Stay Connected, Stay Tweeting{%endblock %}
+
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to Tweet App</h1>
+
+ <h2>
+    {% if form.instance.pk %}
+    Edit Tweet
+    {% else %}
+    Create Tweet
+    {% endif %}
+
+    <form method = "post" enctype = "multipart/form-data" class = "form">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button type = "submit" class = "btn btn-warning">Submit</button>
+    </form>
+    <a href="{% url 'tweet_list' %}" ><button class="btn btn-success"> Back to tweet list</button></a>
+
+</h2> 
+
+
+{% endblock %}
