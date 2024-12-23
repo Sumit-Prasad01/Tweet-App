@@ -69,10 +69,8 @@ def search_tweets(request):
     query = request.GET.get('q')  
     
     if query:       
-        tweets = Tweet.objects.filter(Q(text__icontains=query)) 
-        print(f"Query: {query}, Found tweets: {tweets.count()}") 
+        tweets = Tweet.objects.filter(Q(text__icontains=query))          
     else:
         tweets = Tweet.objects.none()  
-        print("No search query provided")
-
+        
     return render(request, 'search_results.html', {'tweets': tweets, 'query': query})
