@@ -3,7 +3,7 @@ from django.urls import path
 
 
 urlpatterns = [
-    path("", views.tweet_list, name="tweet_list"),
+   path('', views.tweet_list, name="tweet_list"),
 
     path("create/", views.tweet_create, name="tweet_create"),
 
