@@ -71,43 +71,31 @@
 
 
 
-
 <div class="container row gap-3">
-
   {% for tweet in tweets %}
-  <div class="card bg-dark text-light" style="width: 18rem;">
-      <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image">
+    <div class="card bg-dark text-light" style="width: 18rem;">
+      
+      
+      {% if tweet.photo %}
+        <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image">
+      {% else %}
+        
+        <img src="" class="card-img-top" alt="No Image Available">
+      {% endif %}
+      
       <div class="card-body">
-          <h5 class="card-title">{{ tweet.user.username }}</h5>
-          <p class="card-text">{{ tweet.text }}</p>
-          <div class="d-flex justify-content-between">
-
-            {% if tweet.user == user %}
-              <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-info">Edit</a>
-              <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
-            {% endif %}
-          </div>
+        <h5 class="card-title">{{ tweet.user.username }}</h5>
+        <p class="card-text">{{ tweet.text }}</p>
+        <div class="d-flex justify-content-between">
+          {% if tweet.user == user %}
+            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
       </div>
-  </div>
+    </div>
   {% endfor %}
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

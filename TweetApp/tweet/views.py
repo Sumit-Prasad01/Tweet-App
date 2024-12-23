@@ -3,6 +3,7 @@ from .models import Tweet
 from .forms import TweetForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -61,3 +62,17 @@ def register(request):
         form = UserRegistrationForm()
 
     return render(request, 'registration/register.html', {'form' : form})
+
+
+#Search functionality
+def search_tweets(request):
+    query = request.GET.get('q')  
+    
+    if query:       
+        tweets = Tweet.objects.filter(Q(text__icontains=query)) 
+        print(f"Query: {query}, Found tweets: {tweets.count()}") 
+    else:
+        tweets = Tweet.objects.none()  
+        print("No search query provided")
+
+    return render(request, 'search_results.html', {'tweets': tweets, 'query': query})

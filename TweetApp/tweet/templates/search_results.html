@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block title %} Stay Connected, Stay Tweeting
+{%endblock %} {% block content %}
+
+<h1>Search Results for "{{ query }}"</h1>
+
+{% if tweets %}
+<ul>
+  {% for tweet in tweets %}
+  <li>
+    <div class="container row gap-3">
+      {% for tweet in tweets %}
+      <div class="card bg-dark text-light" style="width: 18rem">
+        <img
+          src="{{ tweet.photo.url }}"
+          class="card-img-top m-2"
+          alt="Tweet Image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ tweet.user.username }}</h5>
+          <p class="card-text">{{ tweet.text }}</p>
+          <div class="d-flex justify-content-between"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p>{{ tweet.content }}</p>
+    <small>Posted by {{ tweet.user }} on {{ tweet.created_at }}</small>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No tweets found for "{{ query }}"</p>
+{% endif %}
+<a class="btn btn-primary" href="{% url 'tweet_list' %}">Back</a>
+{% endblock %}

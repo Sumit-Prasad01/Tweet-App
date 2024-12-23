@@ -13,4 +13,6 @@ urlpatterns = [
 
     path("register/", views.register, name="register"),
 
+    path('search/', views.search_tweets, name='search_tweets'),
+
 ] 
